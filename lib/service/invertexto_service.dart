@@ -17,3 +17,10 @@ Future<Map> buscaCEP(String? _valor) async {
       Uri.parse("https://api.invertexto.com/v1/cep/$_valor?token=$_token"));
   return json.decode(response.body);
 }
+
+Future<Map> buscaCNPJ(String? _valor) async{
+  http.Response response;
+  response = await http.get(
+      Uri.parse("https://api.invertexto.com/v1/cnpj/$_valor?token=$_token"));
+  return json.decode(response.body);
+}

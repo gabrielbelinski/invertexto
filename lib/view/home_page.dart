@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invertexto/view/busca_cep_page.dart';
+import 'package:invertexto/view/busca_cnpj_page.dart';
 import 'package:invertexto/view/por_extenso_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -62,6 +63,21 @@ class _HomePageState extends State<HomePage> {
               onTap: (() {
                 Navigator.push(context,
                     MaterialPageRoute(builder: ((context) => BuscaCepPage())));
+              }),
+            ),
+            GestureDetector(
+              child: Row(
+                children: <Widget>[
+                  Icon(Icons.add_business_outlined, color: Colors.white, size: 70.0),
+                  Text(
+                    "Busca CNPJ",
+                    style: TextStyle(color: Colors.white, fontSize: 22.0),
+                  )
+                ],
+              ),
+              onTap: (() {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => BuscaCnpjPage())));
               }),
             ),
           ],

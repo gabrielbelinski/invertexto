@@ -80,9 +80,8 @@ class _PorExtensoPageState extends State<PorExtensoPage> {
     return Padding(
       padding: EdgeInsets.only(top: 10.0),
       child: TextField(
-        autofocus: true,
         decoration: InputDecoration(
-            labelText: snapshot.data("text"),
+            labelText: snapshot.data['text'],
             labelStyle: TextStyle(color: Colors.white),
             border: OutlineInputBorder()),
       ),

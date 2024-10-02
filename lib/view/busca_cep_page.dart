@@ -9,7 +9,6 @@ class BuscaCepPage extends StatefulWidget {
 }
 
 class _BuscaCepPageState extends State<BuscaCepPage> {
-
   String? numeroCep;
 
   @override
@@ -48,44 +47,69 @@ class _BuscaCepPageState extends State<BuscaCepPage> {
                   });
                 },
               ),
-              Expanded(child: FutureBuilder(future: buscaCEP(numeroCep), builder: (context, snapshot) {
-                switch (snapshot.connectionState) {
-                  case ConnectionState.waiting:
-                  case ConnectionState.none:
-                    return Container(
-                      width: 200.0,
-                      height: 200.0,
-                      alignment: Alignment.center,
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                        strokeWidth: 5.0,
-                      ),
-                    );
-                  default:
-                    if(snapshot.hasError){
-                        return Container();
-                    }
-                    else{
-                      return exibeCep(context, snapshot);
-                      //return Container();
-                    }
-                }
-              }))
+              Expanded(
+                  child: FutureBuilder(
+                      future: buscaCEP(numeroCep),
+                      builder: (context, snapshot) {
+                        switch (snapshot.connectionState) {
+                          case ConnectionState.waiting:
+                          case ConnectionState.none:
+                            return Container(
+                              width: 200.0,
+                              height: 200.0,
+                              alignment: Alignment.center,
+                              child: CircularProgressIndicator(
+                                valueColor:
+                                    AlwaysStoppedAnimation<Color>(Colors.white),
+                                strokeWidth: 5.0,
+                              ),
+                            );
+                          default:
+                            if (snapshot.hasError) {
+                              return Container();
+                            } else {
+                              return exibeCEP(context, snapshot);
+                              //return Container();
+                            }
+                        }
+                      }))
             ],
           ),
         ));
   }
 
-   Widget exibeCep(BuildContext context, AsyncSnapshot snapshot) {
-    return Padding(
-      padding: EdgeInsets.only(top: 10.0),
-      child: TextField(
-        autofocus: true,
-        decoration: InputDecoration(
-            labelText: snapshot.data("text"),
-            labelStyle: TextStyle(color: Colors.white),
-            border: OutlineInputBorder()),
-      ),
+  Widget exibeCEP(BuildContext context, AsyncSnapshot snapshot) {
+    return Column(
+      children: <Widget>[
+        TextField(
+          decoration: InputDecoration(
+              labelText: snapshot.data["street"],
+              labelStyle: TextStyle(color: Colors.white),
+              border: OutlineInputBorder()),
+          style: TextStyle(color: Colors.white, fontSize: 18),
+        ),
+        TextField(
+          decoration: InputDecoration(
+              labelText: snapshot.data["neighborhood"],
+              labelStyle: TextStyle(color: Colors.white),
+              border: OutlineInputBorder()),
+          style: TextStyle(color: Colors.white, fontSize: 18),
+        ),
+        TextField(
+          decoration: InputDecoration(
+              labelText: snapshot.data["city"],
+              labelStyle: TextStyle(color: Colors.white),
+              border: OutlineInputBorder()),
+          style: TextStyle(color: Colors.white, fontSize: 18),
+        ),
+        TextField(
+          decoration: InputDecoration(
+              labelText: snapshot.data["state"],
+              labelStyle: TextStyle(color: Colors.white),
+              border: OutlineInputBorder()),
+          style: TextStyle(color: Colors.white, fontSize: 18),
+        ),
+      ],
     );
   }
 }
